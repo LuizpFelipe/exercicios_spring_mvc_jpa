@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro de Pessoas</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        padding: 40px;
+    }
+
+    .container {
+        background-color: #fff;
+        padding: 30px 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        width: 500px;
+        text-align: center;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    form {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    input[type="text"], input[type="submit"] {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro Livro</h1>
+        
+        <form action="salvarlivro" method="post">
+            <label>Titulo:</label>
+            <input type="text" name="titulo">
+            
+            <label>Autor:</label>
+            <input type="text" name="autor">
+            
+            <input type="submit" value="Salvar">
+        </form>
+        <hr>
+        <form action="listarlivros" method="get">
+            <input type="submit" value="Listar Livros">
+        </form>
+
+        <h1>Lista de Livros</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Titulo</th>
+                    <th>Autor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="livro : ${livros}">
+                    <td th:text="${livro.id}"></td>
+                    <td th:text="${livro.titulo}"></td>
+                    <td th:text="${livro.autor}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+        <form action="listartitulos" method="get">
+            <input type="submit" value="Listar Titulos">
+        </form>
+
+        <h1>Lista de Titulos</h1>
+        <table>
+            <thead>
+                <tr>                
+                    <th>Titulo</th>                  
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="titulo : ${titulos}">            
+                    <td th:text="${titulo}"></td>         
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

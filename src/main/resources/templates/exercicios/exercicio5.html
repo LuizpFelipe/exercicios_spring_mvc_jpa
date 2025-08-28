@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro de Funcionarios</title>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f4f4f4;
+	display: flex;
+	justify-content: center;
+	padding: 40px;
+}
+
+.container {
+	background-color: #fff;
+	padding: 30px 40px;
+	border-radius: 10px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	width: 500px;
+	text-align: center;
+}
+
+h1 {
+	color: #333;
+}
+
+form {
+	margin-bottom: 20px;
+}
+
+label {
+	display: block;
+	margin-top: 10px;
+	font-weight: bold;
+}
+
+input[type="text"], input[type="submit"], [type="number"] {
+	width: 100%;
+	padding: 8px;
+	margin-top: 5px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+	background-color: #4CAF50;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background 0.3s;
+}
+
+input[type="submit"]:hover {
+	background-color: #45a049;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+}
+
+th, td {
+	border: 1px solid #ccc;
+	padding: 10px;
+	text-align: center;
+}
+
+th {
+	background-color: #f2f2f2;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Cadastrar Funcionario</h1>
+
+		<form action="/salvarFuncionario" method="post">
+			<label>Nome:</label> <input type="text" name="nome"> <label>Departamento:</label>
+			<input type="text" name="departamento"> <input type="submit"
+				value="Salvar">
+		</form>
+		<hr>
+		<h1>Lista de Funcionarios</h1>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nome</th>
+					<th>Departamento</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="funcionario : ${todosFuncionarios}">
+					<td th:text="${funcionario.id}"></td>
+					<td th:text="${funcionario.nome}"></td>
+					<td th:text="${funcionario.departamento}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<form action="/listarFuncionarios" method="get">
+			<input type="submit" value="Listar Funcionarios">
+		</form>
+		<form action="/listarContagem" method="get">
+			<input type="submit" value="Listar Contagem">
+		</form>
+
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Departamento Funcionario</th>
+					<th>Quantidade</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="entry : ${contagemFuncionarios}">
+					<td th:text="${entry.key}">Departamento</td>
+					<td th:text="${entry.value}">Quantidade</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
