@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Cadastro de Tarefa</title>
+<title>Cadastro de Carro</title>
 <style>
 body {
 	font-family: Arial, sans-serif;
@@ -75,52 +75,49 @@ th {
 </head>
 <body>
 	<div class="container">
-		<h1>Cadastrar Tarefas</h1>
+		<h1>Cadastrar Carros</h1>
 
-		<form action="/salvarTarefa" method="post">
-			<label>Titulo da Tarefa:</label>
-			<input type="text" name="titulo">
-			<label>Status:</label>
-			<select name="concluido">
-				<option value="Feita">Feita</option>
-				<option value="Falta Fazer">Falta Fazer</option>
-			</select>
+		<form action="/salvarCarro" method="post">
+			<label>Modelo:</label>
+			<input type="text" name="modelo">
+			<label>Ano:</label>
+			<input type="text" name="ano">			
 			<input type="submit" value="Salvar">
 		</form>
 		<hr>
-		<h1>Lista de Tarefas</h1>
-		<form action="/listarTarefas" method="get">
+		<h1>Lista de Carros</h1>
+		<form action="/listarCarros" method="get">
 			<input type="submit" value="Listar Tarefas">
 		</form>	
 		<table border="1">
 			<thead>
 				<tr>
 					<th>ID</th>
-					<th>Titulo</th>
-					<th>Situação</th>
+					<th>Modelo</th>
+					<th>Ano</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="tarefas : ${todasTarefas}">
-					<td th:text="${tarefas.id}"></td>
-					<td th:text="${tarefas.titulo}"></td>
-					<td th:text="${tarefas.concluido}"></td>
+				<tr th:each="carro : ${todosCarros}">
+					<td th:text="${carro.id}"></td>
+					<td th:text="${carro.modelo}"></td>
+					<td th:text="${carro.ano}"></td>
 				</tr>
 			</tbody>
 		</table>
 		
-		<form action="/tarefasConcluidas" method="get">
-			<input type="submit" value="Listar Tarefas Feitas">
+		<form action="/anoFabricao" method="get">
+			<input type="submit" value="Listas anos de Fabricação">
 		</form>	
 		<table border="1">
 			<thead>
 				<tr>
-					<th>Tarefas Feitas</th>
+					<th>Ano de Fabricação</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="tarefas : ${tarefasConcluidas}">
-					<td th:text="${tarefas}"></td>
+				<tr th:each="ano : ${anoFabricacao}">
+					<td th:text="${ano}"></td>
 				</tr>
 			</tbody>
 		</table>
